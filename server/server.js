@@ -39,6 +39,7 @@ app.get('/todos', (req,res)=>{
 //GET /todos/12345656
 app.get('/todos/:id',(req,res)=>{
     var id = req.params.id;
+    var isValidId = ObjectID.isValid(id);
     
     if(isValidId){
         Todo.findById({_id:id}).then((todo)=>{
