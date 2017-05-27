@@ -1,28 +1,29 @@
 {
-    "name": "node-mongo-api",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "start": "node server/server.js",
-        "test": "mocha server/**/*.test.js",
-        "test-watch": "nodemon --exec 'npm test'"
-    },
-    "engines": {
-        "node":"7.10.0"
-    },
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-        "body-parser": "^1.17.2",
-        "express": "^4.15.3",
-        "mongodb": "^2.2.27",
-        "mongoose": "^4.10.2"
-    },
-    "devDependencies": {
-        "expect": "^1.20.2",
-        "mocha": "^3.4.2",
-        "nodemon": "^1.11.0",
-        "supertest": "^3.0.0"
-    }
+  "name": "node-mongo-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "test": "export NODE_ENV=test || \"NODE_ENV=test\" && mocha server/**/*.test.js",
+    "test-watch": "nodemon --exec 'npm test'"
+  },
+  "engines": {
+    "node": "7.10.0"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "lodash": "^4.17.4",
+    "mongodb": "^2.2.27",
+    "mongoose": "^4.10.2"
+  },
+  "devDependencies": {
+    "expect": "^1.20.2",
+    "mocha": "^3.4.2",
+    "nodemon": "^1.11.0",
+    "supertest": "^3.0.0"
+  }
 }
