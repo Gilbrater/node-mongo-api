@@ -120,12 +120,16 @@ app.post('/users', (req, res) => {
     user.save().then(() => {
         return user.generateAuthToken();
     }).then((token) => {
-        console.log("TIK_TOK:", token);
         res.header('x-auth', token).send(user);
     }).catch((err) => {
-        console.log("ERROR: ", err);
         res.status(400).send(err);
     });
+});
+
+
+
+app.get('/users/me', authenticate, (req, res) => {
+    res.send(req.user);
 });
 
 //Port Setup
