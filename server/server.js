@@ -101,15 +101,31 @@ app.patch('/todos/:id', (req, res) => {
     Todo.findByIdAndUpdate(id, {
         $set: body
     }, {
-        new: true
-    }).then((todo) => {
-        if (!todo) {
-            return res.status(404).send();
-        }
-        res.send({
-            todo
-        });
-    }).catch((err) => res.status(400).send());
+            new: true
+        }).then((todo) => {
+            if (!todo) {
+                return res.status(404).send();
+            }
+            res.send({
+                todo
+            });
+        }).catch((err) => res.status(400).send());
+});
+
+//POST /users
+app.post('/users', (req, res) => {
+    var body = _.pick(req.body, ["email", "password"]);
+    var user = new User(body);
+
+    user.save().then(() => {
+        return user.generateAuthToken();
+    }).then((token) => {
+        console.log("TIK_TOK:", token);
+        res.header('x-auth', token).send(user);
+    }).catch((err) => {
+        console.log("ERROR: ", err);
+        res.status(400).send(err);
+    });
 });
 
 //Port Setup
