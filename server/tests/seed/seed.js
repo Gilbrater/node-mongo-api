@@ -10,6 +10,7 @@ const todos = [{
     _id: new ObjectID(),
     text: "second todo"
 }];
+
 const userOneId = new ObjectID();
 const userTwoId = new ObjectID();
 const users = [{
