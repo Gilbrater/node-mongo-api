@@ -349,3 +349,5 @@ describe('POST /users/login', () => {
             });
     });
 });
+
+//./mongod --dbpath ~/mongo-data/

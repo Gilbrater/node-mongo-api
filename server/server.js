@@ -106,7 +106,7 @@ app.patch('/todos/:id', (req, res) => {
         }).catch((err) => res.status(400).send());
 });
 
-//POST /users
+//POST /users (Sign Up)
 app.post('/users', (req, res) => {
     var body = _.pick(req.body, ["email", "password"]);
     var user = new User(body);
@@ -125,11 +125,11 @@ app.post('/users/login', (req, res) => {
     var body = _.pick(req.body, ["email", "password"]);
     var user = new User(body);
 
-    User.findByCredentials(body.email, body.password).then((user)=>{
-        user.generateAuthToken().then((token)=>{
+    User.findByCredentials(body.email, body.password).then((user) => {
+        user.generateAuthToken().then((token) => {
             res.header('x-auth', token).send(user);
         });
-    }).catch((e)=>{
+    }).catch((e) => {
         res.status(400).send(e);
     });
 });
@@ -138,6 +138,15 @@ app.post('/users/login', (req, res) => {
 //GET /users/me
 app.get('/users/me', authenticate, (req, res) => {
     res.send(req.user);
+});
+
+//DELETE /users
+app.delete('/users/me/token', authenticate, (req, res) => {
+    req.user.removeToken(req.token).then(() => {
+        res.status(200).send();
+    }, () => {
+        res.status(400).send();
+    });
 });
 
 //Port Setup
