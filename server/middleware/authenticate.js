@@ -7,6 +7,8 @@ var authenticate = (req, res, next) => {
         if (!user) {
             return Promise.reject();
         }
+
+        //Assignments for easier access
         req.user = user;
         req.token = token;
         next();
